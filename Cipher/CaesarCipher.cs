@@ -12,9 +12,8 @@ namespace SilevenText.Cipher
         //shift - variable that represents the number of positions by which each letter in the
         //plain text message is shifted to generate the cipher text message.
 
-        public string encrypt(string text)
+        public string encrypt(string text, int shift)
         {
-            const int shift = 3;
             char[] result = text.ToCharArray();
 
             for (int i = 0; i < result.Length; i++)
@@ -31,9 +30,9 @@ namespace SilevenText.Cipher
             return new string(result);
         }
 
-        public string decrypt(string text)
+        public string decrypt(string text, int shift)
         {
-            const int shift = 26 - 3;
+            shift = 26 - shift;
             char[] result = text.ToCharArray();
 
             for (int i = 0; i < result.Length; i++)

@@ -8,7 +8,7 @@ namespace SilevenText.Cipher
 {
     public interface ICipher
     {
-        string encrypt(string text);
-        string decrypt(string text);
+        string encrypt(string text, int key);
+        string decrypt(string text, int key);
     }
 }
