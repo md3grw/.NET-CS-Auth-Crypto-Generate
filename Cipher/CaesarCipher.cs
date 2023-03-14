@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SilevenText.Cipher
 {
-    internal class CaesarCipher : ICipher
+    internal class CaesarCipher
     {
         //this cipher is very weak
         //shift - variable that represents the number of positions by which each letter in the

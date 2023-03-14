@@ -11,15 +11,15 @@ namespace SilevenText
     {
         static void Main(string[] args)
         {
-            ICipher cipher = new MECipher();
+            VigenereCipher cipher = new VigenereCipher();
 
-            string result = cipher.encrypt("I wrote my own cipher", 10);
+            string result = cipher.Encrypt("why tho", "negro");
+
             Console.WriteLine(result);
-            
-            Console.WriteLine();
-            
-            string decryptedRes = cipher.decrypt(result, 10);
-            Console.WriteLine(decryptedRes);
+
+            string decryptedResult = cipher.Decrypt(result, "negro");
+
+            Console.WriteLine(decryptedResult);
         }
     }
 }
