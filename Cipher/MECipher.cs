@@ -14,7 +14,7 @@ namespace SilevenText.Cipher
         //This cipher is really similar to Caesar's one, but it has N additional chars;
         readonly string chars = "1A $# B45 C7 SH 890- D_+)( OK *& YES ^E$ F CK #@! KJ ~` KK F}[]'><., DK /,! D1 №1 2345678912345678901234567890;% AR :? KJ *";
 
-        private void addSymbols(ref string text, int value)
+        private void AddSymbols(ref string text, int value)
         {
             Random random = new Random();
 
@@ -24,7 +24,7 @@ namespace SilevenText.Cipher
             }
         }
 
-        public string encrypt(string text, int key)
+        public string Encrypt(string text, int key)
         {
             if (key < 0) { key = 0; }
             Random random = new Random();
@@ -55,7 +55,7 @@ namespace SilevenText.Cipher
             return result;
         }
 
-        public string decrypt(string text, int key)
+        public string Decrypt(string text, int key)
         {
             if (key < 0) { key = 0; }
             key++;

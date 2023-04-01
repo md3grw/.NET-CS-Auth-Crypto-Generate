@@ -1,31 +1,31 @@
 ﻿//registration
-
+using SilevenText.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SilevenText.Data;
 
 namespace SilevenText.Authorization
 {
     internal class SignUp
     {
-        private void addUser(string username, string password)
+        private void AddUser(User user)
         {
-            //user has been added to the database 
+            DataBase dataBase = new DataBase();
+
+            dataBase.AddUser(user);
         }
 
-        public bool signUp(string username, string password)
+        public bool Register(User user)
         {
-            if (!LoginValidator.isValid(username, password)) 
+            if (!Validator.IsValid(user))
             {
                 //try again or use login function
+                Console.WriteLine("Try again or use login function");
                 return false;
             }
             else
             {
-                //add crypted data to a file
-                addUser(username, password);
+                AddUser(user);
+                Console.WriteLine("Data was added to a db");
                 return true;
             }
         }

@@ -9,39 +9,11 @@ namespace SilevenText.WorkWithFiles
 {
     internal class FileManager
     {
-        readonly string path = "";
-        readonly string fileName = "DOTU&TP.data";
-
-        public FileManager()
+        public void CreateFile(string path)
         {
-            path = "C:\\Users\\" + Environment.MachineName + "\\AppData\\Local\\.SilevenText";
-        }
-
-        public void createFolder()
-        {
-            try
+            if (!File.Exists(path)) 
             {
-                if (!Directory.Exists(this.path))
-                {
-                    Directory.CreateDirectory(this.path);
-                    //the folder has been successfully created
-                }
-                else
-                {
-                    //the folder is already exist.
-                }
-            }
-            catch (Exception exception)
-            {
-                //something went wrong.
-            }
-        }
-
-        public void createFile()
-        {
-            if (!File.Exists(this.path + fileName)) 
-            {
-                File.Create(this.path + fileName);
+                File.Create(path);
                 //the file has been successfully created
             }
             else
@@ -50,5 +22,6 @@ namespace SilevenText.WorkWithFiles
             }
 
         }
+
     }
 }
