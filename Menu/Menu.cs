@@ -4,6 +4,7 @@ using SilevenText.Authorization;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using SilevenText.Cipher;
 
 namespace SilevenText.MenuNamespace
 {
@@ -23,8 +24,183 @@ namespace SilevenText.MenuNamespace
                 Login();
             }
 
-            //program's logic process
+            while (true)
+            {
+                Console.WriteLine("What do you want to do?");
+                Console.WriteLine("1. Encrypt text(text will be inputed)");
+                Console.WriteLine("2. Decrypt text(text will be inputed)");
+                Console.WriteLine("3. Encrypt text(text will be taken from the file)");
+                Console.WriteLine("4. Decrypt text(text will be taken from the file)");
+                Console.WriteLine("5. EXIT");
 
+                string choice = Console.ReadLine();
+                switch(choice[0]) 
+                {
+                    case '1':
+                        EncryptText();
+                        break;
+                    case '2':
+                        DecryptText();
+                        break;
+                    case '3':
+                        EncryptFile();
+                        break;
+                    case '4':
+                        DecryptFile();
+                        break;
+                    case '5':
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private int CipherChoosing()
+        {
+            Console.WriteLine("Which cipher do you want to use?: ");
+            Console.WriteLine("1. Caesar cipher.");
+            Console.WriteLine("2. MECipher(improved Caesar's cipher).");
+            Console.WriteLine("3. Vigenere Cipher.");
+
+            string choice = Console.ReadLine();
+
+            switch (choice[0])
+            {
+                case '1':
+                    return 1;
+                case '2':
+                    return 2;
+                case '3':
+                    return 3;
+                default:
+                    return 4;
+            }
+        }
+        private void CipherText(int action, int type=0)
+        {
+            int cipher = CipherChoosing();
+            string text;
+
+            if (type == 0)
+            {
+                Console.Write("Input text: ");
+                text = Console.ReadLine();
+            }
+            else
+            {
+                Console.Write("Input file path:");
+                string path = Console.ReadLine();
+
+                text = System.IO.File.ReadAllText(path);
+            }
+
+            string result;
+
+            if (cipher == 1)
+            {
+                CaesarCipher caesarCipher = new CaesarCipher();
+
+                Console.WriteLine("Input shift: ");
+
+                int shift;
+                try
+                {
+                    shift = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Your value is incorrect, the shift is 3.");
+                    shift = 3;
+                }
+
+                if (action == 0)
+                {
+                    result = caesarCipher.Encrypt(text, shift);
+                }
+                else 
+                {
+                    result = caesarCipher.Decrypt(text, shift);
+                }
+                
+            }
+
+            else if (cipher == 2)
+            {
+                MECipher mECipher = new MECipher();
+
+                Console.WriteLine("Input shift: ");
+
+                int shift;
+                try
+                {
+                    shift = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Your value is incorrect, the shift is 5.");
+                    shift = 5;
+                }
+
+                if (action == 0)
+                {
+                    result = mECipher.Encrypt(text, shift);
+                }
+                else
+                {
+                    result = mECipher.Decrypt(text, shift);
+                }
+            }
+
+            else
+            {
+                VigenereCipher vigenere = new VigenereCipher();
+
+                Console.WriteLine("Input key-word: ");
+
+                string keyWord = Console.ReadLine();
+
+                if (action == 0)
+                {
+                    result = vigenere.Encrypt(text, keyWord);
+                }
+                else
+                {
+                    result = vigenere.Decrypt(text, keyWord);
+                }
+            }
+            
+            if (type == 0)
+            {
+                Console.WriteLine(result);
+            }
+            else
+            {
+                Console.Write("Enter path for save: ");
+                string path = Console.ReadLine();
+
+                System.IO.File.WriteAllText(path, result);
+            }
+
+            return;
+
+        }
+        private void EncryptText()
+        {
+            CipherText(0);
+        }
+        private void DecryptText()
+        {
+            CipherText(1);
+        }
+        private void EncryptFile()
+        {
+            CipherText(0, 1);
+        }
+        private void DecryptFile() 
+        {
+            CipherText(1, 1);
         }
 
         private void Register()
@@ -55,7 +231,6 @@ namespace SilevenText.MenuNamespace
                 }
             }
         }
-
         private void Login()
         {
             SignIn signIn = new SignIn();
@@ -84,7 +259,6 @@ namespace SilevenText.MenuNamespace
                 }
             }
         }
-
         private string AskForUsername()
         {
             string username = string.Empty;
