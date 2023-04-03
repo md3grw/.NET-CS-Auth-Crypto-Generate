@@ -86,8 +86,12 @@ namespace SilevenText.Data
         {
             if (users != null && users.Count > 0)
             {
+                Console.WriteLine("Is smth happens here?");
                 foreach (var i in users)
                 {
+                    Console.WriteLine($"USERNAME: {i.Username} : RCVD USERNAME: {user.Username};");
+                    Console.WriteLine($"EMAIL: {i.Email} : RCVD EMAIL: {user.Email}");
+
                     if (user.Username == i.Username)
                     {
                         return true;

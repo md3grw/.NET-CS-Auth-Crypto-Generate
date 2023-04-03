@@ -22,22 +22,22 @@ namespace SilevenText.Authorization
                 return false;
             }
 
-            if (validator.IsUserExisted(user) == true)
+            if (validator.IsUserExisted(user))
             {
                 return false;
             }
 
-            if (validator.IsUsernameCorrect(user.Username) == false) 
+            if (!(validator.IsUsernameCorrect(user.Username))) 
             {
                 return false;
             }
 
-            if (validator.IsPasswordCorrect(user.Password) == false)
+            if (!(validator.IsPasswordCorrect(user.Password)))
             {
                 return false;
             }
 
-            if (validator.IsEmailCorrect(user.Email) == false)
+            if (!(validator.IsEmailCorrect(user.Email)))
             {
                 return false;
             }

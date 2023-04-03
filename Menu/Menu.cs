@@ -33,6 +33,16 @@ namespace SilevenText.MenuNamespace
                 Console.WriteLine("4. Decrypt text(text will be taken from the file)");
                 Console.WriteLine("5. EXIT");
 
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+                //TRY CATCH ANSWERS + FILE CLEARNESS
+
                 string choice = Console.ReadLine();
                 switch(choice[0]) 
                 {
