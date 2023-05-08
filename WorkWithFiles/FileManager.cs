@@ -23,5 +23,17 @@ namespace SilevenText.WorkWithFiles
 
         }
 
+        public void WriteToFile(string path, string text)
+        {
+            if (!File.Exists(path)) 
+            {
+                File.WriteAllText(path, text);
+            }
+            else
+            {
+                File.WriteAllText("../../RESULT.txt", text);
+            }
+        }
+
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SilevenText.Cipher
 {
-    internal class MECipher
+    internal class MECipher : ICipher
     {
         //This cipher is really similar to Caesar's one, but it has N additional chars;
         readonly string chars = "1A $# B45 C7 SH 890- D_+)( OK *& YES ^E$ F CK #@! KJ ~` KK F}[]'><., DK /,! D1 №1 2345678912345678901234567890;% AR :? KJ *";
@@ -24,8 +24,13 @@ namespace SilevenText.Cipher
             }
         }
 
-        public string Encrypt(string text, int key)
+        public string Encrypt(string text, string receivedKey)
         {
+            int key = 3;
+
+            if (CheckShift(receivedKey)) { key = int.Parse(receivedKey); }
+            else { return "INCORRECT KEY"; }
+
             if (key < 0) { key = 0; }
             Random random = new Random();
 
@@ -55,8 +60,13 @@ namespace SilevenText.Cipher
             return result;
         }
 
-        public string Decrypt(string text, int key)
+        public string Decrypt(string text, string receivedKey)
         {
+            int key = 3;
+
+            if (CheckShift(receivedKey)) { key = int.Parse(receivedKey); }
+            else { return "INCORRECT KEY"; }
+
             if (key < 0) { key = 0; }
             key++;
 
@@ -79,5 +89,11 @@ namespace SilevenText.Cipher
             return result;
         }
 
+        private bool CheckShift(string shift)
+        {
+            try { int.Parse(shift); }
+            catch { return false; }
+            return true;
+        }
     }
 }

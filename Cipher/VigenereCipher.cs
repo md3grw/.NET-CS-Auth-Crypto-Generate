@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SilevenText.Cipher
 {
-    internal class VigenereCipher
+    internal class VigenereCipher : ICipher
     {
         //Just a Vigenere cipher, you can find out how it works in Google :)
         public string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

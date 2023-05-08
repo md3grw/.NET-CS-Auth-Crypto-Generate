@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace SilevenText.Cipher
 {
-    internal class CaesarCipher
+    internal class CaesarCipher : ICipher
     {
         //this cipher is very weak
         //shift - variable that represents the number of positions by which each letter in the
         //plain text message is shifted to generate the cipher text message.
 
-        public string Encrypt(string text, int shift)
+        public string Encrypt(string text, string receivedShift)
         {
+            int shift = 3;
+            
+            if (CheckShift(receivedShift)) { shift = int.Parse(receivedShift); }
+            else { return "INCORRECT KEY"; }
+
             char[] result = text.ToCharArray();
 
             for (int i = 0; i < result.Length; i++)
@@ -30,8 +35,13 @@ namespace SilevenText.Cipher
             return new string(result);
         }
 
-        public string Decrypt(string text, int shift)
+        public string Decrypt(string text, string receivedShift)
         {
+            int shift = 3;
+
+            if (CheckShift(receivedShift)) { shift = int.Parse(receivedShift); }
+            else { return "INCORRECT KEY"; }
+
             shift = 26 - shift;
             char[] result = text.ToCharArray();
 
@@ -47,6 +57,13 @@ namespace SilevenText.Cipher
             }
 
             return new string(result);
+        }
+
+        private bool CheckShift(string shift)
+        {
+            try { int.Parse(shift); }
+            catch { return false; }
+            return true;
         }
     }
 }

@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using Newtonsoft.Json;
+using SilevenText.Graphics;
+using PasswordGenerator;
 
 namespace SilevenText
 {
@@ -10,7 +12,6 @@ namespace SilevenText
         static void Main(string[] args)
         {
             ProgramBody.DataProcessor.Begin();
-            ProgramBody.DataProcessor.End();
         }
     }
 }

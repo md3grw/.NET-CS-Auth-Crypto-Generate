@@ -49,11 +49,9 @@ namespace SilevenText.Authorization
         {
             DataBase dataBase = new DataBase();
 
-            dataBase.LoadUsers();
 
             bool result = dataBase.IsUserExisted(user);
 
-            dataBase.Clear();
 
             return result;
         }
@@ -106,6 +104,17 @@ namespace SilevenText.Authorization
             }
 
             return true;
+        }
+
+        public bool IsLoginValid(User user)
+        {
+            DataBase dataBase = new DataBase();
+
+
+            bool result = dataBase.IsUserExisted(user, true);
+
+
+            return result;
         }
     }
 }

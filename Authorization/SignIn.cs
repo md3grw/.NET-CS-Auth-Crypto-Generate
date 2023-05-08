@@ -8,7 +8,8 @@ namespace SilevenText.Authorization
     {
         public bool Login(User user)
         {
-            if (!Validator.IsValid(user))
+            Validator validator= new Validator();
+            if (!validator.IsLoginValid(user))
             {
                 //something went wrong with sign in function! Try again or use registration function
                 return false;

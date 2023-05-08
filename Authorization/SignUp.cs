@@ -19,13 +19,11 @@ namespace SilevenText.Authorization
             if (!Validator.IsValid(user))
             {
                 //try again or use login function
-                Console.WriteLine("Try again or use login function");
                 return false;
             }
-            else
+            else 
             {
                 AddUser(user);
-                Console.WriteLine("Data was added to a db");
                 return true;
             }
         }

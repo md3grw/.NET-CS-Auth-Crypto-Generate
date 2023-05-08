@@ -20,12 +20,6 @@ namespace SilevenText.Data
 
             users = new List<User>();
         }
-
-        public void InitializeDataBase()
-        {
-            FileManager fileManager = new FileManager();
-            fileManager.CreateFile(path);
-        }
         
         public List<User> LoadUsers() 
         {
@@ -82,27 +76,47 @@ namespace SilevenText.Data
             users[index].Username = newName;
         }
 
-        public bool IsUserExisted(User user)
+        public bool IsUserExisted(User user, bool checkForPassword=false)
         {
-            if (users != null && users.Count > 0)
+            users = LoadUsers();
+
+            if (users != null)
             {
-                Console.WriteLine("Is smth happens here?");
-                foreach (var i in users)
+                if (checkForPassword==false)
                 {
-                    Console.WriteLine($"USERNAME: {i.Username} : RCVD USERNAME: {user.Username};");
-                    Console.WriteLine($"EMAIL: {i.Email} : RCVD EMAIL: {user.Email}");
-
-                    if (user.Username == i.Username)
+                    foreach (User currentUser in users)
                     {
-                        return true;
-                    }
+                        if (currentUser.Username == user.Username)
+                        {
+                            Clear();
+                            return true;
+                        }
 
-                    if (user.Email == i.Email)
-                    {
-                        return true;
+                        else if (currentUser.Email == user.Email)
+                        {
+                            Clear();
+                            return true;
+                        }
                     }
                 }
+                else
+                {
+                    foreach (User currentUser in users)
+                    {
+                        if (currentUser.Username == user.Username && currentUser.Password == user.Password && currentUser.Email == user.Email)
+                        {
+                            Console.WriteLine(currentUser.Username + " " + user.Username);
+                            Console.WriteLine(currentUser.Password + " " + user.Password);
+                            Console.WriteLine(currentUser.Email + " " + user.Email);
+                            Clear();
+                            return true;
+                        }
+                    }
+                }
+                
             }
+
+            Clear();
 
             return false;
         }
@@ -123,7 +137,10 @@ namespace SilevenText.Data
 
         public void Clear()
         {
-            users.Clear();
+            if (users != null)
+            {
+                users.Clear();
+            }
         }
 
         
