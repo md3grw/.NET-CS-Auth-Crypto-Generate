@@ -17,30 +17,15 @@ namespace SilevenText.Authorization
         {
             Validator validator = new Validator();
 
-            if (user == null) 
-            {
-                return false;
-            }
+            if (user == null) { return false; }
 
-            if (validator.IsUserExisted(user))
-            {
-                return false;
-            }
+            if (validator.IsUserExisted(user)) { return false; }
 
-            if (!(validator.IsUsernameCorrect(user.Username))) 
-            {
-                return false;
-            }
+            if (!(validator.IsUsernameCorrect(user.Username))) { return false; }
 
-            if (!(validator.IsPasswordCorrect(user.Password)))
-            {
-                return false;
-            }
+            if (!(validator.IsPasswordCorrect(user.Password))) { return false; }
 
-            if (!(validator.IsEmailCorrect(user.Email)))
-            {
-                return false;
-            }
+            if (!(validator.IsEmailCorrect(user.Email))) { return false; }
 
             return true;
         }
@@ -49,9 +34,7 @@ namespace SilevenText.Authorization
         {
             DataBase dataBase = new DataBase();
 
-
             bool result = dataBase.IsUserExisted(user);
-
 
             return result;
         }
@@ -62,10 +45,7 @@ namespace SilevenText.Authorization
 
             Match match = regex.Match(email);
 
-            if (match.Success)
-            {
-                return true;
-            }
+            if (match.Success) { return true;}
 
             return false;
         }
@@ -73,17 +53,11 @@ namespace SilevenText.Authorization
         private bool IsUsernameCorrect(string username)
         {
             if (username.Length < 4)
-            {
                 return false;
-            }
 
             foreach(var ch in username) 
-            {
                 if (ch == ' ')
-                {
                     return false;
-                }
-            }
 
             return true;
         }
@@ -91,17 +65,11 @@ namespace SilevenText.Authorization
         private bool IsPasswordCorrect(string password) 
         {
             if (password.Length < 6)
-            {
                 return false;
-            }
 
             foreach (var ch in password)
-            {
                 if (ch == ' ')
-                {
                     return false;
-                }
-            }
 
             return true;
         }
@@ -110,9 +78,7 @@ namespace SilevenText.Authorization
         {
             DataBase dataBase = new DataBase();
 
-
             bool result = dataBase.IsUserExisted(user, true);
-
 
             return result;
         }

@@ -19,6 +19,7 @@ namespace SilevenText.Menu
 
             Console.SetCursorPosition(30, 19);
 
+            //Special method that gives user an opportunity to press Escape.
             string username = EGetLine();
 
             return username;
@@ -26,7 +27,7 @@ namespace SilevenText.Menu
 
         static private string EGetLine()
         {
-            Regex regex = new Regex(@"^[a-zA-Z0-9\s@,.]*$");
+            Regex regex = new Regex(@"^[a-zA-Z0-9\s@,.!#$%^&*()_+={}[\]?/<>~`]*$");
             
             string username = "";
             

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SilevenText.Data
 {
+    //There are functions that are connected with DataBase.
     internal class DataBase
     {
         private List<User> users;

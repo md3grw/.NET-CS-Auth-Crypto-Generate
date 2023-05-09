@@ -32,6 +32,7 @@ namespace SilevenText.MenuNamespace
         {
             int choice;
 
+            //in this cycle user gets asked for menu choice, and then other functions handle this choice.
             while (true)
             {
                 choice = ShowMenu(new GraphicMainMenu(), 4);
@@ -45,8 +46,10 @@ namespace SilevenText.MenuNamespace
                 {
                     TypeOfCipher encryptionType = ConvertChoiceToTOC(ShowMenu(new EncryptionTypeMenu(), 3));
                         if (encryptionType == TypeOfCipher.Null) continue;
+
                     CipherActionCode encryptOrDecrypt = ConvertChoiceToCAC(ShowMenu(new EncryptionGraphicMenu(), 2));
                         if (encryptOrDecrypt == CipherActionCode.Null) continue;
+
                     TypeOfSavings textSavingsType = ConvertChoiceToTOS(ShowMenu(new TextSaveGraphicMenu(), 2));
                         if (textSavingsType == TypeOfSavings.Null) continue;
 
@@ -75,6 +78,7 @@ namespace SilevenText.MenuNamespace
             string password = "";
             string email = "";
 
+            //this scheme is made, because user may press Escape and leave.
             try
             {
                 username = TextInput.AskForText("Please input username: ");
@@ -112,6 +116,7 @@ namespace SilevenText.MenuNamespace
             string password = "";
             string email = "";
 
+            //this scheme is made, because user may press Escape and leave.
             try
             {
                 username = TextInput.AskForText("Please input username: ");

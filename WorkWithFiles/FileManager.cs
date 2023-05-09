@@ -17,7 +17,7 @@ namespace SilevenText.WorkWithFiles
 
         public void WriteToFile(string path, string text)
         {
-            
+            //it creates file for IsPathRooted
             try { using (FileStream stream = new FileStream(path, FileMode.Open)) { } }
             catch {}
 

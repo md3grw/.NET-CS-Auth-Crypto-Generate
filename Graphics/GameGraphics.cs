@@ -51,7 +51,7 @@ namespace SilevenText.Graphics
             PrintText(17, 12, "we really appreciate it.", ConsoleColor.Green);
             PrintText(17, 13, "Here you can crypt and find data in text.", ConsoleColor.Green);
             PrintText(17, 14, "For menu controls use W[goes upper] and S[goes down].", ConsoleColor.Green);
-            PrintText(17, 15, "If you want to mute music, press M. ", ConsoleColor.Green);
+            PrintText(17, 15, "If you want to escape, press ESCAPE. ", ConsoleColor.Green);
             PrintText(17, 16, "Thanks for using our application!", ConsoleColor.Green);
 
             PrintText(17, 22, "Press any key to continue...", ConsoleColor.Green);

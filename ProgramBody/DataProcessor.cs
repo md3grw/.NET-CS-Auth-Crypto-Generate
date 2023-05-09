@@ -15,6 +15,8 @@ namespace SilevenText.ProgramBody
     {
         public static void Begin()
         {
+            Console.Title = "SILEVEN TEXT";
+
             DataBase dataBase = new DataBase();
             MenuNamespace.Menu menu = new MenuNamespace.Menu();
 
