@@ -45,13 +45,16 @@ namespace SilevenText.Cipher
         {
             Console.Clear();
 
-            string text = TextInput.AskForText("Please input text: ");
-            if (TextInput.HandleInput(text) == false) return;
+            string text = "";
+            string key = "";
+
+            try { text = TextInput.AskForText("Please input text: "); }
+            catch (EscapeException) { return; }
 
             Console.Clear();
 
-            string key = TextInput.AskForText("Please input key: ");
-            if (TextInput.HandleInput(key) == false) return;
+            try { key = TextInput.AskForText("Please input key: "); }
+            catch (EscapeException) { return; }
 
             if (encryptOrDecrypt == CipherActionCode.Encryption) 
             {
@@ -68,8 +71,9 @@ namespace SilevenText.Cipher
                 }
                 else if (typeOfSavings == TypeOfSavings.ResultAsFile)
                 {
-                    string path = TextInput.AskForText("Please input path: ");
-                    if (TextInput.HandleInput(path) == false) return;
+                    string path = "";
+                    try { path = TextInput.AskForText("Please input path: "); }
+                    catch (EscapeException) { return; }
 
                     new FileManager().WriteToFile(path, cipher.Encrypt(text, key));
 
