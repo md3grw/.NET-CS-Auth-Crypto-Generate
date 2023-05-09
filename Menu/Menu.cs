@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using SilevenText.WorkWithFiles;
 using SilevenText.Menu;
 using PasswordGenerator;
+using System.Net;
 
 namespace SilevenText.MenuNamespace
 {
@@ -26,7 +27,6 @@ namespace SilevenText.MenuNamespace
             gameGraphics = new GameGraphics();
             isLogined = false;
         }
-
 
         public void Start()
         {
@@ -44,9 +44,12 @@ namespace SilevenText.MenuNamespace
                 else if (choice == 1 && isLogined == true)
                 {
                     TypeOfCipher encryptionType = ConvertChoiceToTOC(ShowMenu(new EncryptionTypeMenu(), 3));
+                        if (encryptionType == TypeOfCipher.Null) continue;
                     CipherActionCode encryptOrDecrypt = ConvertChoiceToCAC(ShowMenu(new EncryptionGraphicMenu(), 2));
+                        if (encryptOrDecrypt == CipherActionCode.Null) continue;
                     TypeOfSavings textSavingsType = ConvertChoiceToTOS(ShowMenu(new TextSaveGraphicMenu(), 2));
-                
+                        if (textSavingsType == TypeOfSavings.Null) continue;
+
                     new CipherHandler().HandleChoice(encryptionType, encryptOrDecrypt, textSavingsType);
                 }
                 else if (choice == 2 && isLogined == true)
@@ -68,11 +71,21 @@ namespace SilevenText.MenuNamespace
 
             Console.Clear();
 
-            string username = TextInput.AskForText("Please input username: ");
+            string username = "";
+            string password = "";
+            string email = "";
 
-            string password = TextInput.AskForText("Please input password: "); ;
-
-            string email = TextInput.AskForText("Please input email: "); ;
+            try
+            {
+                username = TextInput.AskForText("Please input username: ");
+                password = TextInput.AskForText("Please input password: "); 
+                email = TextInput.AskForText("Please input email: ");
+            }
+            
+            catch (EscapeException)
+            {
+                return false;
+            }
 
             User user = new User(username, email, password);
 
@@ -95,12 +108,21 @@ namespace SilevenText.MenuNamespace
 
             Console.Clear();
 
-            string username = TextInput.AskForText("Please input username: ");
+            string username = "";
+            string password = "";
+            string email = "";
 
-            string password = TextInput.AskForText("Please input password: "); ;
+            try
+            {
+                username = TextInput.AskForText("Please input username: ");
+                password = TextInput.AskForText("Please input password: ");
+                email = TextInput.AskForText("Please input email: ");
+            }
 
-            string email = TextInput.AskForText("Please input email: "); ;
-
+            catch (EscapeException)
+            {
+                return false;
+            }
             User user = new User(username, email, password);
 
             if (signIn.Login(user) == true)
@@ -131,7 +153,11 @@ namespace SilevenText.MenuNamespace
 
         private void HandlePasswordGenerator()
         {
-            string sLength = TextInput.AskForText("Please, input length of the password: ");
+            string sLength = "";
+
+            try { sLength = TextInput.AskForText("Please, input length of the password: "); }
+            catch (EscapeException) { return; }
+            
             int length;
          
             if (int.TryParse(sLength, out length)) { }
@@ -166,28 +192,18 @@ namespace SilevenText.MenuNamespace
 
                 if (key.Key == ConsoleKey.S)
                 {
-                    if (choice == size)
-                    {
-                        choice = 0;
-                    }
-                    else
-                    {
-                        choice++;
-                    }
+                    if (choice == size) choice = 0;
+                    else choice++;
+
                     graphicMenu.DrawMenu(choice);
                     continue;
                 }
 
                 else if (key.Key == ConsoleKey.W)
                 {
-                    if (choice == 0)
-                    {
-                        choice = size;
-                    }
-                    else
-                    {
-                        choice--;
-                    }
+                    if (choice == 0) choice = size;
+                    else choice--;
+                    
                     graphicMenu.DrawMenu(choice);
                     continue;
                 }
@@ -212,23 +228,36 @@ namespace SilevenText.MenuNamespace
         {
             if (choice == 0)
                 return TypeOfCipher.Caesar;
+
             if (choice == 1)
                 return TypeOfCipher.ME;
-            return TypeOfCipher.Vigenere;
+
+            else if (choice == 2)
+                return TypeOfCipher.Vigenere;
+
+            return TypeOfCipher.Null;
         }
 
         private CipherActionCode ConvertChoiceToCAC(int choice)
         {
             if (choice == 0)
                 return CipherActionCode.Encryption;
-            return CipherActionCode.Decryption;
+
+            else if (choice == 1)
+                return CipherActionCode.Decryption;
+
+            return CipherActionCode.Null;
         }
 
         private TypeOfSavings ConvertChoiceToTOS(int choice)
         {
             if (choice == 0)
                 return TypeOfSavings.ResultAsFile;
-            return TypeOfSavings.ResultAsText;
+
+            else if (choice == 1)
+                return TypeOfSavings.ResultAsText;
+
+            return TypeOfSavings.Null;
         }
 
     }

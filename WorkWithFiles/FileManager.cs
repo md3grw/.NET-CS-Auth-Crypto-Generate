@@ -12,27 +12,17 @@ namespace SilevenText.WorkWithFiles
         public void CreateFile(string path)
         {
             if (!File.Exists(path)) 
-            {
                 File.Create(path);
-                //the file has been successfully created
-            }
-            else
-            {
-                //file has been already created
-            }
-
         }
 
         public void WriteToFile(string path, string text)
         {
-            if (!File.Exists(path)) 
-            {
-                File.WriteAllText(path, text);
-            }
-            else
-            {
-                File.WriteAllText("../../RESULT.txt", text);
-            }
+            
+            try { using (FileStream stream = new FileStream(path, FileMode.Open)) { } }
+            catch {}
+
+            if (!Path.IsPathRooted(path)) { File.WriteAllText(path, text); }
+            else { File.WriteAllText("RESULT.txt", text); }
         }
 
     }
