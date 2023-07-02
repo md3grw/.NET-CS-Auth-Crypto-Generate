@@ -138,10 +138,7 @@ namespace SilevenText.Data
 
         public void Clear()
         {
-            if (users != null)
-            {
-                users.Clear();
-            }
+            if (users != null) users.Clear();
         }
 
         

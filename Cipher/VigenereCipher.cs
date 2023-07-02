@@ -47,11 +47,9 @@ namespace SilevenText.Cipher
             return result;
         }
         
-        //text encryption
         public string Encrypt(string plainMessage, string key)
             => EncryptDecrypt(plainMessage, key);
 
-        //text decryption
         public string Decrypt(string encryptedMessage, string key)
             => EncryptDecrypt(encryptedMessage, key, false);
     }

@@ -13,6 +13,13 @@ namespace SilevenText.Authorization
 {
     internal class Validator
     {
+        DataBase dataBase;
+
+        public Validator()
+        {
+            dataBase = new DataBase();
+        }
+
         public static bool IsValid(User user)
         {
             Validator validator = new Validator();
@@ -32,8 +39,6 @@ namespace SilevenText.Authorization
 
         private bool IsUserExisted(User user) 
         {
-            DataBase dataBase = new DataBase();
-
             bool result = dataBase.IsUserExisted(user);
 
             return result;
@@ -76,8 +81,6 @@ namespace SilevenText.Authorization
 
         public bool IsLoginValid(User user)
         {
-            DataBase dataBase = new DataBase();
-
             bool result = dataBase.IsUserExisted(user, true);
 
             return result;

@@ -1,5 +1,4 @@
-﻿//Login
-using SilevenText.Entity;
+﻿using SilevenText.Entity;
 using System;
 
 namespace SilevenText.Authorization
@@ -9,6 +8,7 @@ namespace SilevenText.Authorization
         public bool Login(User user)
         {
             Validator validator= new Validator();
+
             if (!validator.IsLoginValid(user)) { return false; }
             else { return true; }
         }
