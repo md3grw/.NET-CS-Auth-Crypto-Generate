@@ -66,13 +66,11 @@ namespace SilevenText.Graphics
 
             //introduction
             PrintText(17, 10, "Author is a white male.", ConsoleColor.Green);
-            PrintText(17, 11, "He is from Ukraine, but living in Latvia.", ConsoleColor.Green);
-            PrintText(17, 12, "He is studying in school, interested in programming", ConsoleColor.Green);
-            PrintText(17, 13, "This application he wrote due to the circumstances.", ConsoleColor.Green);
-            PrintText(17, 14, "He got to write an application for his exam.", ConsoleColor.Green);
-            PrintText(17, 15, "If you have any questions, you may write to him,", ConsoleColor.Green);
-            PrintText(17, 16, "his Telegram is @md3grw.", ConsoleColor.Green);
-            PrintText(17, 17, "Thanks for using our application!", ConsoleColor.Green);
+            PrintText(17, 11, "He is from Ukraine.", ConsoleColor.Green);
+            PrintText(17, 12, "This application he wrote due to the circumstances.", ConsoleColor.Green);
+            PrintText(17, 13, "If you have any questions, you may write to him,", ConsoleColor.Green);
+            PrintText(17, 14, "His Telegram is @md3grw.", ConsoleColor.Green);
+            PrintText(17, 15, "Thanks for using our application!", ConsoleColor.Green);
 
             PrintText(17, 22, "Press any key to continue...", ConsoleColor.Green);
             Console.ReadKey();
