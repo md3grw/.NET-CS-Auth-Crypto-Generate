@@ -7,10 +7,14 @@ This project is a C# console application that allows you to encrypt text in file
 ## Installation
 
 1. Clone the repository to your computer:
-2. git clone https://github.com/md3grw/.NET-CS-Auth-Crypto-Generate.git
+    ```bash
+    git clone `https://github.com/md3grw/.NET-CS-Auth-Crypto-Generate.git`
+2. Restore NuGet packages(*or else download them):
+    ```bash
+    dotnet resotre
 3. Open .csproj file in your IDE
 
-NuGet packages that are used:
+*NuGet packages that are used:
 - Newtonsoft.Json
 - PasswordGenerator
 
